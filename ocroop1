@@ -1,0 +1,91 @@
+class Pet
+ private name  //attribute (private to class)
+ private type
+ private health
+ 
+public procedure new(givenName, givenType, givenHealth)  //constructor public - can be easily referenced outside of the class
+ name=givenName
+ type=givenType
+ health=givenHealth
+ endprocedure
+
+public function getName() //getter public
+	return name
+ endfunction
+
+public procedure setName(gName) //setter public
+	name = gName
+ endprocedure
+
+public function getType() //getter public
+	return type
+ endfunction
+
+public procedure setType(gType) //setter public
+	type = gType
+ endprocedure
+
+public function getHealth() //getter public
+	return health
+ endfunction
+
+public procedure setHealth(gHealth) //setter public
+	health = gHealth
+ endprocedure
+
+public procedure attacked(lowerRandom, upperRandom)
+	damage = random(lowerRandom, upperRandom)
+    health = health - damage
+endprocedure
+
+endclass
+
+// Main code
+//instantiate an object based on the class Pet
+// The object is referenced by myFish
+myFish = new Pet("Goldie", "goldfish", 1) // new is constructor
+print (myFish.getName())  // use a getter method
+print (myFish.getType())
+myFish.setName("Jaws")   // use a setter method
+myFish.setType("shark")
+print (myFish.getName()) // check the setter has worked
+print (myFish.getType())
+print (" ")
+
+//Task 1 add a private attribute called type and alter 
+// constructor so that it takes two parameters
+// add a getter and setter for new attribute
+
+//Task 2 create two new objects of Pet class. "Tom" who  is a cat and
+// "Jerry" who is a mouse.
+
+Tom = new Pet("Tom", "Cat", 100) // new is constructor
+print (Tom.getName() + " is a " + Tom.getType())  // use a getter method
+Jerry = new Pet("Jerry", "Mouse", 80)
+print (Jerry.getName() + " is a " + Jerry.getType())
+print(Tom.getName() + "'s health is " + Tom.getHealth())
+print(Jerry.getName() + "'s health is " + Jerry.getHealth())
+
+
+//Task 3 Give Tom and Jerry a health score of 100 and 80 respectively
+// Tom has an attack value of random(1, 20) 
+// Jerry has an attack value of random(10, 25)  
+//Let them attack each other in turn (new method) until health less than 10
+// Thompson Tip start with new attributes and then alter constructor
+
+while (Tom.getHealth() >= 10 AND Jerry.getHealth() >= 10)
+  Jerry.attacked(1, 20)
+  Tom.attacked(10, 25)
+  print(Tom.getName() + "'s health is " + Tom.getHealth())
+  print(Jerry.getName() + "'s health is " + Jerry.getHealth())
+endwhile
+
+if (Tom.getHealth() < 10) then
+ print(Tom.getName() + " is knocked out!")
+endif
+if (Jerry.getHealth() < 10) then
+ print(Jerry.getName() + " is knocked out!")
+endif
+
+//Task 4 Jerry is smarter than Tom so can has a 50% chance of doing a double
+//attack
